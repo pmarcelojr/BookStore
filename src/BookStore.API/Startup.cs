@@ -28,10 +28,8 @@ namespace BookStore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreDbContext>(options =>
-            {
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<BookStoreDbContext>(options => options.UseMySql(connectionString, b => b.MigrationsAssembly("BookStore.Infrastructure")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
