@@ -6,5 +6,5 @@ export class Book
     description: string;
     value: number;
     publishDate: any;
-    categoryId: number;
+    categoryId: number
 }
