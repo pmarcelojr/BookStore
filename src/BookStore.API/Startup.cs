@@ -34,6 +34,7 @@ namespace BookStore.API
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookStoreDbContext>(options => options.UseMySql(connectionString, b => b.MigrationsAssembly("BookStore.Infrastructure")));
 
+            services.AddCors();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.ResolveDependencies();
@@ -58,6 +59,8 @@ namespace BookStore.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
