@@ -4,8 +4,8 @@ using BookStore.Infrastructure.Context;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class CategoryReposity : Repository<Category>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryReposity(BookStoreDbContext context) : base(context) { }
+        public CategoryRepository(BookStoreDbContext context) : base(context) { }
     }
 }

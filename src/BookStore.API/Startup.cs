@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.API.Configuration;
 using BookStore.Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+//using BookStore.API.Configuration;
 
 namespace BookStore.API
 {
@@ -31,7 +34,9 @@ namespace BookStore.API
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookStoreDbContext>(options => options.UseMySql(connectionString, b => b.MigrationsAssembly("BookStore.Infrastructure")));
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
+            services.ResolveDependencies();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStore.API", Version = "v1" });
