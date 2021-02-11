@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BookStore.Domain\BookStore.Domain.csproj" />
+    <ProjectReference Include="..\..\src\BookStore.Infrastructure\BookStore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
